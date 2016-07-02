@@ -64,12 +64,14 @@ public class Snake {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
+                System.out.println(score); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
                     score += apple.S2.point;
                     size++;
                     apple.S = false;
+                    System.out.println(score); // на время
                 }
             }
 
@@ -103,12 +105,14 @@ public class Snake {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
+                System.out.println(score); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
                     score += apple.S2.point;
                     size++;
                     apple.S = false;
+                    System.out.println(score); // на время
                 }
             }
 
@@ -139,12 +143,14 @@ public class Snake {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
+                System.out.println(score); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
                     score += apple.S2.point;
                     size++;
                     apple.S = false;
+                    System.out.println(score); // на время
                 }
             }
 
@@ -175,12 +181,14 @@ public class Snake {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
+                System.out.println(score); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
                     score += apple.S2.point;
                     size++;
                     apple.S = false;
+                    System.out.println(score); // на время
                 }
             }
 
