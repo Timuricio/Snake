@@ -82,7 +82,7 @@ public class Snake {
                 }
             }
             if(apple.R == true) {
-                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
                     score += apple.R1.point;
                     time+= 150;
                     size++;
@@ -139,7 +139,7 @@ public class Snake {
                 }
             }
             if(apple.R == true) {
-                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
                     score += apple.R1.point;
                     time+= 150;
                     size++;
@@ -193,7 +193,7 @@ public class Snake {
                 }
             }
             if(apple.R == true) {
-                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
                     score += apple.R1.point;
                     time+= 150;
                     size++;
@@ -247,7 +247,7 @@ public class Snake {
                 }
             }
             if(apple.R == true) {
-                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
                     score += apple.R1.point;
                     time+= 150;
                     size++;
