@@ -108,7 +108,7 @@ public class Snake
                 size++;
             }
 
-            //return matrix;
+
 
         } else if (direction.equals(Direction.UP))
         {
@@ -142,7 +142,7 @@ public class Snake
                 size++;
             }
 
-            //return matrix;
+
         } else
         {
             for (int i = size - 1; i > 0; i--)
