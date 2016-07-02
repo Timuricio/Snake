@@ -30,20 +30,24 @@ public class View
 
         Player currentPlayer;
         JFrame frame = new JFrame("Snake");
+        JLabel score = new JLabel();
+        JLabel timer = new JLabel();
         JFrame scores;
 
-        view.init(frame);
+        view.init(frame, score, timer);
 
         String name = JOptionPane.showInputDialog(frame, "Введи свое имя:", "Эй, ты!", JOptionPane.QUESTION_MESSAGE);
 
         for (; ; ) {
             currentPlayer = new Player(name);
             scores = new JFrame("Scores");
-            snake = new Snake(fieldMatrix.getMatrix(), 30);
+            snake = new Snake(fieldMatrix.getMatrix(), 3);
             while (true) {
                 snake.move(fieldMatrix.getMatrix());
                 view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
                 fieldMatrix.setMatrix(new int[60][60]);
+                score.setText(String.format("%s - %d","Score",snake.score));
+                timer.setText(String.format("%s - %d","Time",snake.time));
                 view.sleep(100);
 
                 if (!snake.isAlive)
@@ -117,10 +121,10 @@ public class View
         }
     }
 
-    private void init(JFrame frame)
+    private void init(JFrame frame, JLabel score, JLabel timer)
     {
-        frame.setPreferredSize(new Dimension(800, 600));
-        frame.setResizable(true);
+        frame.setPreferredSize(new Dimension(750, 630));
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         frame.getContentPane().setBackground(Color.white);
@@ -128,6 +132,13 @@ public class View
 
         paint(frame.getContentPane(), fieldMatrix.getMatrix());
 
+        score.setText(String.format("%s - %d", "Score",0));
+        score.setBounds(610,10,90,20);
+        frame.getContentPane().add(score);
+
+        timer.setText(String.format("%s - %d", "Time",0));
+        timer.setBounds(610,25,90,20);
+        frame.getContentPane().add(timer);
 
         frame.pack();
         frame.setVisible(true);
@@ -169,8 +180,8 @@ public class View
 
     private void initScores(JFrame frame, List<Player> list)
     {
-        frame.setPreferredSize(new Dimension(200, 300));
-        frame.setResizable(true);
+        frame.setPreferredSize(new Dimension(250, 300));
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setBackground(Color.white);
         frame.setLocationByPlatform(true);
