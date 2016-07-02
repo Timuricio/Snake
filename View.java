@@ -43,7 +43,7 @@ public class View
                 break;
         }
 
-        view.initScores(scores);
+        view.initScores(scores,playerList);
 
         System.out.println("Game Over, MotherFucker!!!");
     }
@@ -124,12 +124,23 @@ public class View
 
     }
 
-    private void initScores(JFrame frame)
+    private void initScores(JFrame frame, List<Player> list)
     {
-        frame.setPreferredSize(new Dimension(100, 300));
-        frame.setResizable(false);
+        frame.setPreferredSize(new Dimension(200, 300));
+        frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.white);
         frame.setLocationByPlatform(true);
+
+        JLabel label;
+
+        for (Player player : list)
+        {
+            label = new JLabel();
+            label.setText(String.format("%s - %d+012",player.getName(),player.getScore()));
+            frame.getContentPane().add(label);
+        }
+
         frame.pack();
         frame.setVisible(true);
 
