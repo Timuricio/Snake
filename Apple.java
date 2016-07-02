@@ -5,7 +5,7 @@ import java.util.Random;
  */
 public class Apple {
     public static int maxAppleCount = 3;
-    public static int rabbitCounter = 1;
+    public static int rabbitCounter = 11;
     public static final int point = 200;
     public int x, y;
     public boolean S = false;

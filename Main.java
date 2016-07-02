@@ -11,7 +11,7 @@ public class Main
 {
     public static void main(String[] args) throws IOException
     {
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/score.txt"));
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("score.txt"));
         ArrayList<Player> players = new ArrayList<>();
         Player player1 = new Player("Nagibator8000");
         player1.setScore(1000000);
