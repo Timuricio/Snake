@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
@@ -13,31 +15,39 @@ import java.util.List;
  */
 public class View
 {
+    private final static String FILE = "src/score.txt";
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
     private static Snake snake;
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    private static boolean replay = false;
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException
+    {
         View view = new View();
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("score.txt"));
+
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILE));
         List<Player> playerList = new ArrayList<>();
 
         playerList = view.addPlayers(inputStream);
 
         Player currentPlayer;
         JFrame frame = new JFrame("Snake");
-        JFrame scores = new JFrame("Scores");
+        JLabel score = new JLabel();
+        JLabel timer = new JLabel();
+        JFrame scores;
 
-        view.init(frame);
+        view.init(frame, score, timer);
 
         String name = JOptionPane.showInputDialog(frame, "Введи свое имя:", "Эй, ты!", JOptionPane.QUESTION_MESSAGE);
-        currentPlayer = new Player(name);
+
         for (; ; ) {
+            currentPlayer = new Player(name);
             scores = new JFrame("Scores");
             snake = new Snake(fieldMatrix.getMatrix(), 3);
             while (true) {
                 snake.move(fieldMatrix.getMatrix());
                 view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
                 fieldMatrix.setMatrix(new int[60][60]);
+                score.setText(String.format("%s - %d","Score",snake.score));
+                timer.setText(String.format("%s - %d","Time",snake.time));
                 view.sleep(100);
 
                 if (!snake.isAlive)
@@ -47,12 +57,15 @@ public class View
             currentPlayer.setScore(snake.score);
 
             playerList = view.checkTheHeroes(playerList, currentPlayer);
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("score.txt"));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE));
             view.sendScores(playerList, out);
             view.initScores(scores, playerList);
 
             System.out.println("Game Over, MotherFucker!!!");
-            view.sleep(5000);
+            while (!replay)
+                Thread.currentThread().sleep(100);
+
+            replay = false;
         }
     }
 
@@ -108,10 +121,10 @@ public class View
         }
     }
 
-    private void init(JFrame frame)
+    private void init(JFrame frame, JLabel score, JLabel timer)
     {
-        frame.setPreferredSize(new Dimension(800, 600));
-        frame.setResizable(true);
+        frame.setPreferredSize(new Dimension(750, 630));
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         frame.getContentPane().setBackground(Color.white);
@@ -119,6 +132,13 @@ public class View
 
         paint(frame.getContentPane(), fieldMatrix.getMatrix());
 
+        score.setText(String.format("%s - %d", "Score",0));
+        score.setBounds(610,10,90,20);
+        frame.getContentPane().add(score);
+
+        timer.setText(String.format("%s - %d", "Time",0));
+        timer.setBounds(610,25,90,20);
+        frame.getContentPane().add(timer);
 
         frame.pack();
         frame.setVisible(true);
@@ -160,8 +180,8 @@ public class View
 
     private void initScores(JFrame frame, List<Player> list)
     {
-        frame.setPreferredSize(new Dimension(200, 300));
-        frame.setResizable(true);
+        frame.setPreferredSize(new Dimension(250, 300));
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setBackground(Color.white);
         frame.setLocationByPlatform(true);
@@ -183,9 +203,42 @@ public class View
             frame.getContentPane().add(label,c);
         }
 
+        JButton buttonAgain = new JButton("Again");
+        c.weighty = 0.1;
+        c.weightx= 0.1;
+        c.gridx = 0;
+        c.gridy = 10;
+        frame.getContentPane().add(buttonAgain,c);
+
+        JButton buttonClose = new JButton("Close");
+        c.weighty = 0.1;
+        c.weightx= 0.1;
+        c.gridx = 1;
+        c.gridy = 10;
+        frame.getContentPane().add(buttonClose,c);
+
 
         frame.pack();
         frame.setVisible(true);
+
+        buttonAgain.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                replay = true;
+                frame.setVisible(false);
+            }
+        });
+
+        buttonClose.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
     }
 
     private void paint(Container container, int[][] matrix)
