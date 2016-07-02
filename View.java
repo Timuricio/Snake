@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -14,13 +16,17 @@ public class View
 
     public static void main(String[] args)
     {
-
+        List<Player> playerList = new ArrayList<>();
+        Player player;
         JFrame frame = new JFrame("Snake");
 
         View view = new View();
         view.init(frame);
 
-        for (; ; )
+        String name = JOptionPane.showInputDialog(frame,"Введи свое имя:","Эй, ты!",JOptionPane.QUESTION_MESSAGE);
+        player = new Player(name);
+
+        while (true)
         {
             snake.move(fieldMatrix.getMatrix());
             view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
@@ -56,7 +62,7 @@ public class View
 
         JLabel score = new JLabel("000000");
 
-        score.setBounds(620,620,80,20);
+        score.setBounds(620, 620, 80, 20);
         frame.getContentPane().add(score);
 
         frame.pack();
@@ -113,7 +119,7 @@ public class View
                     fieldMatrix.getField()[x][y] = new Pixel(Color.decode("#D0D8F6"));
                 }
 
-                fieldMatrix.getField()[x][y].setBounds(0, 0, x * Pixel.W+10, y * Pixel.H + 10);
+                fieldMatrix.getField()[x][y].setBounds(0, 0, x * Pixel.W + 10, y * Pixel.H + 10);
                 container.add(fieldMatrix.getField()[x][y]);
             }
         }
