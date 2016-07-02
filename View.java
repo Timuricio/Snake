@@ -10,8 +10,6 @@ import java.awt.event.KeyListener;
 public class View
 {
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
-    //private static int[][] matrix = new int[60][60];
-    private static Pixel[][] field = new Pixel[60][60];
     private static Snake snake = new Snake(fieldMatrix.getMatrix(), 3);
 
     public static void main(String[] args)
@@ -108,15 +106,15 @@ public class View
             {
                 if (matrix[x][y] == 1)
                 {
-                    field[x][y] = new Pixel(Color.BLACK);
+                    fieldMatrix.getField()[x][y] = new Pixel(Color.BLACK);
 
                 } else
                 {
-                    field[x][y] = new Pixel(Color.decode("#D0D8F6"));
+                    fieldMatrix.getField()[x][y] = new Pixel(Color.decode("#D0D8F6"));
                 }
 
-                field[x][y].setBounds(0, 0, x * Pixel.W, y * Pixel.H + 10);
-                container.add(field[x][y]);
+                fieldMatrix.getField()[x][y].setBounds(0, 0, x * Pixel.W+10, y * Pixel.H + 10);
+                container.add(fieldMatrix.getField()[x][y]);
             }
         }
     }
@@ -129,10 +127,10 @@ public class View
             {
                 if (matrix[x][y] == 1)
                 {
-                    field[x][y].setBackground(Color.BLACK);
+                    fieldMatrix.getField()[x][y].setBackground(Color.BLACK);
                 } else
                 {
-                    field[x][y].setBackground(Color.decode("#D0D8F6"));
+                    fieldMatrix.getField()[x][y].setBackground(Color.decode("#D0D8F6"));
                 }
 
                 container.repaint();
