@@ -44,7 +44,9 @@ public class Apple {
     public void paintApple(int[][] matrix) {
         matrix[x][y] = 1;
         if(S) {
-            S2.Xscore -= 0.5;
+            if(S2.point > 200) {
+                S2.point -= 100;
+            }
             S2.paintApple(matrix);
         }
     }
