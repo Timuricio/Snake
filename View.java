@@ -18,7 +18,7 @@ public class View
     public static void main(String[] args) throws IOException, ClassNotFoundException
     {
         View view = new View();
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("src/score.txt"));
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("score.txt"));
         List<Player> playerList = new ArrayList<>();
 
         playerList = view.addPlayers(inputStream);
@@ -132,12 +132,10 @@ public class View
         frame.getContentPane().setBackground(Color.white);
         frame.setLocationByPlatform(true);
 
-        JLabel label;
-
         for (Player player : list)
         {
-            label = new JLabel();
-            label.setText(String.format("%s - %d+012",player.getName(),player.getScore()));
+            JLabel label = new JLabel();
+            label.setText(String.format("%s - %d",player.getName(),player.getScore()));
             frame.getContentPane().add(label);
         }
 
