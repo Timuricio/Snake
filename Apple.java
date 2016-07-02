@@ -5,12 +5,16 @@ import java.util.Random;
  */
 public class Apple {
     public static int maxAppleCount = 3;
+    public static int rabbitCounter = 20;
     public static final int point = 200;
     public int x, y;
     public boolean S = false;
-    int count = 0;
+    public boolean R = false;
+    private int count = 0;
+    private int Rcount = 0;
     protected Random random = new Random();
     SuperApple S2;
+    Rabbit R1;
 
     public Apple() {
 
@@ -38,6 +42,11 @@ public class Apple {
             count = 0;
             S2 = new SuperApple(matrix);
         }
+        if (++Rcount == rabbitCounter) {
+            R = true;
+            Rcount = 0;
+            R1 = new Rabbit(matrix);
+        }
 
     }
 
@@ -47,6 +56,9 @@ public class Apple {
             if(S2.point > 200) {
                 S2.point -= 10;
             }
+            S2.paintApple(matrix);
+        }
+        if(R) {
             S2.paintApple(matrix);
         }
     }
