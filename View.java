@@ -77,6 +77,7 @@ public class View
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
+        frame.getContentPane().setBackground(Color.white);
 
         paint(frame.getContentPane(), fieldMatrix.getMatrix());
 
@@ -149,9 +150,12 @@ public class View
                 if (matrix[x][y] == 1)
                 {
                     fieldMatrix.getField()[x][y].setBackground(Color.BLACK);
-                } else
+                } else if (matrix[x][y] == 0)
                 {
                     fieldMatrix.getField()[x][y].setBackground(Color.decode("#D0D8F6"));
+                } else
+                {
+                    fieldMatrix.getField()[x][y].setBackground(Color.YELLOW);
                 }
 
                 container.repaint();
