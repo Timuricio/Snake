@@ -65,11 +65,14 @@ public class Snake {
                 apple.generateApple(matrix);
                 size++;
             }
-            if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
-                score += apple.S2.point;
-                size++;
-                apple.S = false;
+            if(apple.S == true) {
+                if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
+                    score += apple.S2.point;
+                    size++;
+                    apple.S = false;
+                }
             }
+
 
 
             //return matrix;
@@ -101,10 +104,12 @@ public class Snake {
                 apple.generateApple(matrix);
                 size++;
             }
-            if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
-                score += apple.S2.point;
-                size++;
-                apple.S = false;
+            if(apple.S == true) {
+                if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
+                    score += apple.S2.point;
+                    size++;
+                    apple.S = false;
+                }
             }
 
 
@@ -135,10 +140,12 @@ public class Snake {
                 apple.generateApple(matrix);
                 size++;
             }
-            if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
-                score += apple.S2.point;
-                size++;
-                apple.S = false;
+            if(apple.S == true) {
+                if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
+                    score += apple.S2.point;
+                    size++;
+                    apple.S = false;
+                }
             }
 
 
@@ -169,10 +176,12 @@ public class Snake {
                 apple.generateApple(matrix);
                 size++;
             }
-            if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
-                score += apple.S2.point;
-                size++;
-                apple.S = false;
+            if(apple.S == true) {
+                if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
+                    score += apple.S2.point;
+                    size++;
+                    apple.S = false;
+                }
             }
 
 
