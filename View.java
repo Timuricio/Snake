@@ -25,6 +25,7 @@ public class View
 
         Player currentPlayer;
         JFrame frame = new JFrame("Snake");
+        JFrame scores = new JFrame("Scores");
 
         view.init(frame);
 
@@ -41,6 +42,8 @@ public class View
             if (!snake.isAlive)
                 break;
         }
+
+        view.initScores(scores);
 
         System.out.println("Game Over, MotherFucker!!!");
     }
@@ -78,8 +81,10 @@ public class View
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
         frame.getContentPane().setBackground(Color.white);
+        frame.setLayout(null);
 
         paint(frame.getContentPane(), fieldMatrix.getMatrix());
+
 
         frame.pack();
         frame.setVisible(true);
@@ -119,6 +124,18 @@ public class View
 
     }
 
+    private void initScores(JFrame frame)
+    {
+        frame.setPreferredSize(new Dimension(100, 300));
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setLocationByPlatform(true);
+        frame.pack();
+        frame.setVisible(true);
+
+
+
+    }
 
     private void paint(Container container, int[][] matrix)
     {
