@@ -81,6 +81,17 @@ public class Snake {
                     System.out.println(time); // на время
                 }
             }
+            if(apple.R == true) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
+                    score += apple.R1.point;
+                    time+= 150;
+                    size++;
+                    apple.R = false;
+                    System.out.println(score); // на время
+                    System.out.println(time); // на время
+                }
+
+            }
 
 
 
@@ -127,6 +138,17 @@ public class Snake {
                     System.out.println(time); // на время
                 }
             }
+            if(apple.R == true) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
+                    score += apple.R1.point;
+                    time+= 150;
+                    size++;
+                    apple.R = false;
+                    System.out.println(score); // на время
+                    System.out.println(time); // на время
+                }
+
+            }
 
 
         } else if (direction.equals(Direction.UP)) {
@@ -170,6 +192,17 @@ public class Snake {
                     System.out.println(time); // на время
                 }
             }
+            if(apple.R == true) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
+                    score += apple.R1.point;
+                    time+= 150;
+                    size++;
+                    apple.R = false;
+                    System.out.println(score); // на время
+                    System.out.println(time); // на время
+                }
+
+            }
 
 
         } else {
@@ -212,6 +245,17 @@ public class Snake {
                     System.out.println(score); // на время
                     System.out.println(time); // на время
                 }
+            }
+            if(apple.R == true) {
+                if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
+                    score += apple.R1.point;
+                    time+= 150;
+                    size++;
+                    apple.R = false;
+                    System.out.println(score); // на время
+                    System.out.println(time); // на время
+                }
+
             }
 
 
