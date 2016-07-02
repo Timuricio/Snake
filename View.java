@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -43,10 +44,41 @@ public class View
                 break;
         }
 
+        currentPlayer.setScore(snake.score);
+
+        playerList = view.checkTheHeroes(playerList, currentPlayer);
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/score.txt"));
+        view.sendScores(playerList,out);
         view.initScores(scores,playerList);
 
         System.out.println("Game Over, MotherFucker!!!");
     }
+
+    private void sendScores(List<Player> players, ObjectOutputStream out) throws IOException
+    {
+        for (Player player : players)
+        {
+            out.writeObject(player);
+        }
+        out.close();
+    }
+
+    private List<Player> checkTheHeroes(List<Player> playerList, Player player)
+    {
+        playerList.add(player);
+        playerList.sort(new Comparator<Player>()
+        {
+            @Override
+            public int compare(Player o1, Player o2)
+            {
+                return Integer.compare(o1.getScore(),o2.getScore());
+            }
+        });
+
+        playerList.remove(10);
+        return playerList;
+    }
+
 
     private List<Player> addPlayers(ObjectInputStream inputStream) throws IOException, ClassNotFoundException
     {
@@ -184,12 +216,9 @@ public class View
                 if (matrix[x][y] == 1)
                 {
                     fieldMatrix.getField()[x][y].setBackground(Color.BLACK);
-                } else if (matrix[x][y] == 0)
-                {
-                    fieldMatrix.getField()[x][y].setBackground(Color.decode("#D0D8F6"));
                 } else
                 {
-                    fieldMatrix.getField()[x][y].setBackground(Color.YELLOW);
+                    fieldMatrix.getField()[x][y].setBackground(Color.decode("#D0D8F6"));
                 }
 
                 container.repaint();
