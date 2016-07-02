@@ -13,12 +13,12 @@ import java.util.List;
 public class View
 {
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
-    private static Snake snake = new Snake(fieldMatrix.getMatrix(), 3);
+    private static Snake snake = new Snake(fieldMatrix.getMatrix(), 30);
 
     public static void main(String[] args) throws IOException, ClassNotFoundException
     {
         View view = new View();
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("score.txt"));
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("src/score.txt"));
         List<Player> playerList = new ArrayList<>();
 
         playerList = view.addPlayers(inputStream);
@@ -132,18 +132,26 @@ public class View
         frame.getContentPane().setBackground(Color.white);
         frame.setLocationByPlatform(true);
 
-        for (Player player : list)
+        frame.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+
+        c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(2,2,5,5);
+        c.weighty = 1;
+        c.weightx= 1;
+        c.gridx = 0;
+
+        for (int i = 0; i < list.size(); i++)
         {
             JLabel label = new JLabel();
-            label.setText(String.format("%s - %d",player.getName(),player.getScore()));
-            frame.getContentPane().add(label);
+            label.setText(String.format("%s - %d", list.get(i).getName(), list.get(i).getScore()));
+            c.gridy = i;
+            frame.getContentPane().add(label,c);
         }
+
 
         frame.pack();
         frame.setVisible(true);
-
-
-
     }
 
     private void paint(Container container, int[][] matrix)
