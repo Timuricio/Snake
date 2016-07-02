@@ -2,7 +2,7 @@
  * Created by Иван on 02.07.2016.
  */
 public class Rabbit extends Apple {
-    public static final int Rpoint = Apple.point * 10;
+    public static final int Rpoint = 2000;
     public int go = 0;
 
     Rabbit(int[][] matrix) {
@@ -20,31 +20,37 @@ public class Rabbit extends Apple {
     @Override
     public void paintApple(int[][] matrix) {
         int x2 = x, y2 = y;
-        if (++go == 2) {
+        if (++go == 1) {
 
             do {
                 x = x2;
                 y = y2;
-                switch (random.nextInt(1)) {
-                    case 0:
-                        switch (random.nextInt(1)) {
-                            case 0:
+                switch (random.nextInt(3)) {
+                    case 1:
+                        switch (random.nextInt(3) + 1) {
+                            case 1:
                                 if(++x == 60) x = 0 ;
                                 break;
-                            case 1:
+                            case 2:
                                 if(--x == -1) x = 59;
+                                break;
+                            default:
                                 break;
                         }
                         break;
-                    case 1:
-                        switch (random.nextInt(1)) {
-                            case 0:
+                    case 2:
+                        switch (random.nextInt(3) + 1) {
+                            case 1:
                                 if(++y == 60) y = 0;
                                 break;
-                            case 1:
+                            case 2:
                                 if(--y == -1) y = 59;
                                 break;
+                            default:
+                                break;
                         }
+                        break;
+                    default:
                         break;
                 }
             } while (matrix[x][y] == 1);

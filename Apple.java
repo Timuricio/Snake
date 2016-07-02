@@ -5,7 +5,7 @@ import java.util.Random;
  */
 public class Apple {
     public static int maxAppleCount = 3;
-    public static int rabbitCounter = 20;
+    public static int rabbitCounter = 1;
     public static final int point = 200;
     public int x, y;
     public boolean S = false;
@@ -59,7 +59,7 @@ public class Apple {
             S2.paintApple(matrix);
         }
         if(R) {
-            S2.paintApple(matrix);
+            R1.paintApple(matrix);
         }
     }
 }

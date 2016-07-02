@@ -61,15 +61,12 @@ public class Snake {
                 matrix[Ar[i][0]][Ar[i][1]] = 1;
             }
 
-            apple.paintApple(matrix);
-            time--;
+
             if ((Ar[0][0] == apple.x) && (Ar[0][1] == apple.y)) {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 time+= 35;
                 size++;
-                System.out.println(score); // на время
-                System.out.println(time); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
@@ -77,8 +74,6 @@ public class Snake {
                     time+= 35;
                     size++;
                     apple.S = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
             }
             if(apple.R == true) {
@@ -87,11 +82,11 @@ public class Snake {
                     time+= 150;
                     size++;
                     apple.R = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
 
             }
+            apple.paintApple(matrix);
+            time--;
 
 
 
@@ -118,15 +113,12 @@ public class Snake {
             for (int i = 0; i < size; i++) {
                 matrix[Ar[i][0]][Ar[i][1]] = 1;
             }
-            apple.paintApple(matrix);
-            time--;
+
             if ((Ar[0][0] == apple.x) && (Ar[0][1] == apple.y)) {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 time+= 35;
                 size++;
-                System.out.println(score); // на время
-                System.out.println(time); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
@@ -134,8 +126,6 @@ public class Snake {
                     size++;
                     time+= 35;
                     apple.S = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
             }
             if(apple.R == true) {
@@ -144,11 +134,11 @@ public class Snake {
                     time+= 150;
                     size++;
                     apple.R = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
 
             }
+            apple.paintApple(matrix);
+            time--;
 
 
         } else if (direction.equals(Direction.UP)) {
@@ -172,15 +162,12 @@ public class Snake {
             for (int i = 0; i < size; i++) {
                 matrix[Ar[i][0]][Ar[i][1]] = 1;
             }
-            apple.paintApple(matrix);
-            time--;
+
             if ((Ar[0][0] == apple.x) && (Ar[0][1] == apple.y)) {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 time+= 35;
                 size++;
-                System.out.println(score); // на время
-                System.out.println(time); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
@@ -188,8 +175,6 @@ public class Snake {
                     time+= 35;
                     size++;
                     apple.S = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
             }
             if(apple.R == true) {
@@ -198,11 +183,11 @@ public class Snake {
                     time+= 150;
                     size++;
                     apple.R = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
 
             }
+            apple.paintApple(matrix);
+            time--;
 
 
         } else {
@@ -226,15 +211,12 @@ public class Snake {
             for (int i = 0; i < size; i++) {
                 matrix[Ar[i][0]][Ar[i][1]] = 1;
             }
-            apple.paintApple(matrix);
-            time--;
+
             if ((Ar[0][0] == apple.x) && (Ar[0][1] == apple.y)) {
                 score += Apple.point;
                 apple.generateApple(matrix);
                 time+= 35;
                 size++;
-                System.out.println(score); // на время
-                System.out.println(time); // на время
             }
             if(apple.S == true) {
                 if ((Ar[0][0] == apple.S2.x) && (Ar[0][1] == apple.S2.y) || (Ar[0][0] == apple.S2.x2) && (Ar[0][1] == apple.S2.y2) || (Ar[0][0] == apple.S2.x3) && (Ar[0][1] == apple.S2.y3)) {
@@ -242,8 +224,6 @@ public class Snake {
                     time+= 35;
                     size++;
                     apple.S = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
             }
             if(apple.R == true) {
@@ -252,11 +232,11 @@ public class Snake {
                     time+= 150;
                     size++;
                     apple.R = false;
-                    System.out.println(score); // на время
-                    System.out.println(time); // на время
                 }
 
             }
+            apple.paintApple(matrix);
+            time--;
 
 
         } if(time <= 0) isAlive = false;
