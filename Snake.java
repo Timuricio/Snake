@@ -186,8 +186,9 @@ public class Snake
             matrix[headX][headY] = 1;
             Ar[i][0] = headX;
             Ar[i][1] = headY;
+            System.out.print("ХУЙ!!!");
         }
     }
 
-    //Test comment
+    // Тимур лошара
 }
