@@ -18,7 +18,7 @@ public class View
     public static void main(String[] args) throws IOException, ClassNotFoundException
     {
         View view = new View();
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("src/score.txt"));
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("score.txt"));
         List<Player> playerList = new ArrayList<>();
 
         playerList = view.addPlayers(inputStream);
