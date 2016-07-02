@@ -14,12 +14,11 @@ import java.util.List;
 public class View
 {
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
-    private static Snake snake = new Snake(fieldMatrix.getMatrix(), 3);
+    private static Snake snake;
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException
-    {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         View view = new View();
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("src/score.txt"));
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("score.txt"));
         List<Player> playerList = new ArrayList<>();
 
         playerList = view.addPlayers(inputStream);
@@ -32,26 +31,29 @@ public class View
 
         String name = JOptionPane.showInputDialog(frame, "Введи свое имя:", "Эй, ты!", JOptionPane.QUESTION_MESSAGE);
         currentPlayer = new Player(name);
+        for (; ; ) {
+            scores = new JFrame("Scores");
+            snake = new Snake(fieldMatrix.getMatrix(), 3);
+            while (true) {
+                snake.move(fieldMatrix.getMatrix());
+                view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
+                fieldMatrix.setMatrix(new int[60][60]);
+                view.sleep(100);
 
-        while (true)
-        {
-            snake.move(fieldMatrix.getMatrix());
-            view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
-            fieldMatrix.setMatrix(new int[60][60]);
-            view.sleep();
+                if (!snake.isAlive)
+                    break;
+            }
 
-            if (!snake.isAlive)
-                break;
+            currentPlayer.setScore(snake.score);
+
+            playerList = view.checkTheHeroes(playerList, currentPlayer);
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("score.txt"));
+            view.sendScores(playerList, out);
+            view.initScores(scores, playerList);
+
+            System.out.println("Game Over, MotherFucker!!!");
+            view.sleep(5000);
         }
-
-        currentPlayer.setScore(snake.score);
-
-        playerList = view.checkTheHeroes(playerList, currentPlayer);
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/score.txt"));
-        view.sendScores(playerList,out);
-        view.initScores(scores,playerList);
-
-        System.out.println("Game Over, MotherFucker!!!");
     }
 
     private void sendScores(List<Player> players, ObjectOutputStream out) throws IOException
@@ -95,11 +97,11 @@ public class View
         return list;
     }
 
-    private void sleep()
+    private void sleep(int it)
     {
         try
         {
-            Thread.sleep(100);
+            Thread.sleep(it);
         } catch (InterruptedException e)
         {
             e.printStackTrace();
