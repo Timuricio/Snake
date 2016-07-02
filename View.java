@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class View
 {
-    private final static String FILE = "score.txt";
+    private final static String FILE = "src/score.txt";
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
     private static Snake snake;
     private static boolean replay = false;
