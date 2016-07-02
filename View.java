@@ -14,7 +14,7 @@ import java.util.List;
 public class View
 {
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
-    private static Snake snake = new Snake(fieldMatrix.getMatrix(), 30);
+    private static Snake snake = new Snake(fieldMatrix.getMatrix(), 3);
 
     public static void main(String[] args) throws IOException, ClassNotFoundException
     {
@@ -71,7 +71,7 @@ public class View
             @Override
             public int compare(Player o1, Player o2)
             {
-                return Integer.compare(o1.getScore(),o2.getScore());
+                return Integer.compare(o2.getScore(),o1.getScore());
             }
         });
 
