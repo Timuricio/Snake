@@ -32,11 +32,16 @@ public class View
         JFrame frame = new JFrame("Snake");
         JLabel score = new JLabel();
         JLabel timer = new JLabel();
+        JLabel playserSnake = new JLabel("#########");
         JFrame scores;
 
-        view.init(frame, score, timer);
-
+        view.init(frame, score, timer, playserSnake);
         String name = JOptionPane.showInputDialog(frame, "Введи свое имя:", "Эй, ты!", JOptionPane.QUESTION_MESSAGE);
+
+        if (name == null||name.isEmpty())
+            name = "NoName";
+
+        playserSnake.setText(name);
 
         for (; ; ) {
             currentPlayer = new Player(name);
@@ -121,7 +126,7 @@ public class View
         }
     }
 
-    private void init(JFrame frame, JLabel score, JLabel timer)
+    private void init(JFrame frame, JLabel score, JLabel timer,JLabel playserSnake)
     {
         frame.setPreferredSize(new Dimension(750, 630));
         frame.setResizable(false);
@@ -132,12 +137,17 @@ public class View
 
         paint(frame.getContentPane(), fieldMatrix.getMatrix());
 
+
+
+        playserSnake.setBounds(610,10,90,20);
+        frame.getContentPane().add(playserSnake);
+
         score.setText(String.format("%s - %d", "Score",0));
-        score.setBounds(610,10,90,20);
+        score.setBounds(610,25,90,20);
         frame.getContentPane().add(score);
 
         timer.setText(String.format("%s - %d", "Time",0));
-        timer.setBounds(610,25,90,20);
+        timer.setBounds(610,40,90,20);
         frame.getContentPane().add(timer);
 
         frame.pack();
