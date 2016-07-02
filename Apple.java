@@ -4,9 +4,10 @@ import java.util.Random;
  * Created by Timur on 01.07.2016.
  */
 public class Apple
-{
-    public int x, y;
-    private Random random = new Random();
+        {
+            public static final int point = 200;
+            public int x, y;
+            private Random random = new Random();
 
     public Apple()
     {

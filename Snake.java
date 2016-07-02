@@ -9,12 +9,14 @@ public class Snake
     int size;
     int headX = 30;
     int headY = 30;
+    int score;
 
 
     private Direction direction;
 
     public Snake(int[][] matrix, int size)
     {
+        score = 0;
         direction = Direction.LEFT;
         this.size = size;
         Ar = new int[100][2];
@@ -69,6 +71,7 @@ public class Snake
 
             apple.paintApple(matrix);
             if( ( Ar[0][0] == apple.x ) && ( Ar[0][1] == apple.y ) ) {
+                score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
             }
@@ -104,6 +107,7 @@ public class Snake
             }
             apple.paintApple(matrix);
             if( ( Ar[0][0] == apple.x ) && ( Ar[0][1] == apple.y ) ) {
+                score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
             }
@@ -138,6 +142,7 @@ public class Snake
             }
             apple.paintApple(matrix);
             if( ( Ar[0][0] == apple.x ) && ( Ar[0][1] == apple.y ) ) {
+                score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
             }
@@ -171,6 +176,7 @@ public class Snake
             }
             apple.paintApple(matrix);
             if( ( Ar[0][0] == apple.x ) && ( Ar[0][1] == apple.y ) ) {
+                score += Apple.point;
                 apple.generateApple(matrix);
                 size++;
             }
