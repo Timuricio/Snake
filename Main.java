@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -13,7 +13,7 @@ public class Main
     {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("src/score.txt"));
         ArrayList<Player> players = new ArrayList<>();
-        Player player1 = new Player("Nagibator 8000");
+        Player player1 = new Player("Nagibator8000");
         player1.setScore(1000000);
         Player player2 = new Player("MiLaShKa");
         player2.setScore(9000);

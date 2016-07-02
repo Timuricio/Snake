@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.*;
@@ -13,27 +15,31 @@ import java.util.List;
  */
 public class View
 {
+    private final static String FILE = "src/score.txt";
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
     private static Snake snake;
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    private static boolean replay = false;
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException
+    {
         View view = new View();
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("score.txt"));
+
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(FILE));
         List<Player> playerList = new ArrayList<>();
 
         playerList = view.addPlayers(inputStream);
 
         Player currentPlayer;
         JFrame frame = new JFrame("Snake");
-        JFrame scores = new JFrame("Scores");
+        JFrame scores;
 
         view.init(frame);
 
         String name = JOptionPane.showInputDialog(frame, "Введи свое имя:", "Эй, ты!", JOptionPane.QUESTION_MESSAGE);
-        currentPlayer = new Player(name);
+
         for (; ; ) {
+            currentPlayer = new Player(name);
             scores = new JFrame("Scores");
-            snake = new Snake(fieldMatrix.getMatrix(), 3);
+            snake = new Snake(fieldMatrix.getMatrix(), 30);
             while (true) {
                 snake.move(fieldMatrix.getMatrix());
                 view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
@@ -47,12 +53,15 @@ public class View
             currentPlayer.setScore(snake.score);
 
             playerList = view.checkTheHeroes(playerList, currentPlayer);
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("score.txt"));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FILE));
             view.sendScores(playerList, out);
             view.initScores(scores, playerList);
 
             System.out.println("Game Over, MotherFucker!!!");
-            view.sleep(5000);
+            while (!replay)
+                Thread.currentThread().sleep(100);
+
+            replay = false;
         }
     }
 
@@ -183,9 +192,42 @@ public class View
             frame.getContentPane().add(label,c);
         }
 
+        JButton buttonAgain = new JButton("Again");
+        c.weighty = 0.1;
+        c.weightx= 0.1;
+        c.gridx = 0;
+        c.gridy = 10;
+        frame.getContentPane().add(buttonAgain,c);
+
+        JButton buttonClose = new JButton("Close");
+        c.weighty = 0.1;
+        c.weightx= 0.1;
+        c.gridx = 1;
+        c.gridy = 10;
+        frame.getContentPane().add(buttonClose,c);
+
 
         frame.pack();
         frame.setVisible(true);
+
+        buttonAgain.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                replay = true;
+                frame.setVisible(false);
+            }
+        });
+
+        buttonClose.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
     }
 
     private void paint(Container container, int[][] matrix)
