@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +15,21 @@ public class View
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
     private static Snake snake = new Snake(fieldMatrix.getMatrix(), 3);
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException, ClassNotFoundException
     {
+        View view = new View();
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("src/score.txt"));
         List<Player> playerList = new ArrayList<>();
-        Player player;
+
+        playerList = view.addPlayers(inputStream);
+
+        Player currentPlayer;
         JFrame frame = new JFrame("Snake");
 
-        View view = new View();
         view.init(frame);
 
-        String name = JOptionPane.showInputDialog(frame,"Введи свое имя:","Эй, ты!",JOptionPane.QUESTION_MESSAGE);
-        player = new Player(name);
+        String name = JOptionPane.showInputDialog(frame, "Введи свое имя:", "Эй, ты!", JOptionPane.QUESTION_MESSAGE);
+        currentPlayer = new Player(name);
 
         while (true)
         {
@@ -38,6 +43,21 @@ public class View
         }
 
         System.out.println("Game Over, MotherFucker!!!");
+    }
+
+    private List<Player> addPlayers(ObjectInputStream inputStream) throws IOException, ClassNotFoundException
+    {
+        List<Player> list = new ArrayList<>();
+        Player player;
+
+        for (int i = 0; i < 10; i++)
+        {
+            player = (Player) inputStream.readObject();
+            list.add(player);
+        }
+
+        inputStream.close();
+        return list;
     }
 
     private void sleep()
@@ -59,11 +79,6 @@ public class View
         frame.setLocationByPlatform(true);
 
         paint(frame.getContentPane(), fieldMatrix.getMatrix());
-
-        JLabel score = new JLabel("000000");
-
-        score.setBounds(620, 620, 80, 20);
-        frame.getContentPane().add(score);
 
         frame.pack();
         frame.setVisible(true);
