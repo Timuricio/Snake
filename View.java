@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class View
 {
-    private final static String FILE = "src/score.txt";
+    private final static String FILE = "score.txt";
     private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
     private static Snake snake;
     private static boolean replay = false;
@@ -175,8 +175,7 @@ public class View
                     //Если "стрелка вниз" - сдвинуть фигурку вниз
                 else if (e.getKeyCode() == KeyEvent.VK_DOWN && snake.Ar[0][1] - snake.Ar[1][1] != -1)
                     snake.setDirection(Direction.DOWN);
-                else if (e.getKeyChar() == 'q')
-                    System.exit(0);
+                else if (e.getKeyChar() == 'q') snake.setDirection(Direction.BOT);
             }
 
             @Override
