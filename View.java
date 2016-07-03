@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class View
 {
-    private final static String FILE = "score.txt";
-    private static FieldMatrix fieldMatrix = new FieldMatrix(61, 61);
+    private final static String FILE = "src/score.txt";
+    private static FieldMatrix fieldMatrix = new FieldMatrix(60, 60);
     private static Snake snake;
     private static boolean replay = false;
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException
@@ -50,7 +50,7 @@ public class View
             while (true) {
                 snake.move(fieldMatrix.getMatrix());
                 view.repaint(frame.getContentPane(), fieldMatrix.getMatrix());
-                fieldMatrix.setMatrix(new int[61][61]);
+                fieldMatrix.setMatrix(new int[60][60]);
                 score.setText(String.format("%s - %d","Score",snake.score));
                 timer.setText(String.format("%s - %d","Time",snake.time));
                 view.sleep(100);
@@ -176,8 +176,7 @@ public class View
                 else if (e.getKeyCode() == KeyEvent.VK_DOWN && snake.Ar[0][1] - snake.Ar[1][1] != -1)
                     snake.setDirection(Direction.DOWN);
                 else if (e.getKeyChar() == 'q')
-                    //System.exit(0);
-                    snake.setDirection(Direction.BOT);
+                    System.exit(0);
             }
 
             @Override
@@ -254,37 +253,37 @@ public class View
 
     private void paint(Container container, int[][] matrix)
     {
-        for (int y = 0; y < 61; y++)
+        for (int x = 0; x < 60; x++)
         {
-            for (int x = 0; x < 61; x++)
+            for (int y = 0; y < 60; y++)
             {
-                if (matrix[y][x] == 1)
+                if (matrix[x][y] == 1)
                 {
-                    fieldMatrix.getField()[y][x] = new Pixel(Color.BLACK);
+                    fieldMatrix.getField()[x][y] = new Pixel(Color.BLACK);
 
                 } else
                 {
-                    fieldMatrix.getField()[y][x] = new Pixel(Color.decode("#D0D8F6"));
+                    fieldMatrix.getField()[x][y] = new Pixel(Color.decode("#D0D8F6"));
                 }
 
-                fieldMatrix.getField()[y][x].setBounds(0, 0, x * Pixel.W + 10, y * Pixel.H + 10);
-                container.add(fieldMatrix.getField()[y][x]);
+                fieldMatrix.getField()[x][y].setBounds(0, 0, x * Pixel.W + 10, y * Pixel.H + 10);
+                container.add(fieldMatrix.getField()[x][y]);
             }
         }
     }
 
     private void repaint(Container container, int[][] matrix)
     {
-        for (int y = 0; y < 61; y++)
+        for (int x = 0; x < 60; x++)
         {
-            for (int x = 0; x < 61; x++)
+            for (int y = 0; y < 60; y++)
             {
-                if (matrix[y][x] == 1)
+                if (matrix[x][y] == 1)
                 {
-                    fieldMatrix.getField()[y][x].setBackground(Color.BLACK);
+                    fieldMatrix.getField()[x][y].setBackground(Color.BLACK);
                 } else
                 {
-                    fieldMatrix.getField()[y][x].setBackground(Color.decode("#D0D8F6"));
+                    fieldMatrix.getField()[x][y].setBackground(Color.decode("#D0D8F6"));
                 }
 
                 container.repaint();
