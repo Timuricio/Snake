@@ -6,12 +6,12 @@ public class Rabbit extends Apple {
     public int go = 0;
 
     Rabbit(int[][] matrix) {
-        x = random.nextInt(59);
-        y = random.nextInt(59);
+        x = random.nextInt(60);
+        y = random.nextInt(60);
 
         while (matrix[x][y] == 1) {
-            x = random.nextInt(59);
-            y = random.nextInt(59);
+            x = random.nextInt(60);
+            y = random.nextInt(60);
         }
         paintApple(matrix);
 
@@ -29,10 +29,10 @@ public class Rabbit extends Apple {
                     case 1:
                         switch (random.nextInt(3) + 1) {
                             case 1:
-                                if(++x == 60) x = 0 ;
+                                if(++x == 61) x = 0 ;
                                 break;
                             case 2:
-                                if(--x == -1) x = 59;
+                                if(--x == -1) x = 60;
                                 break;
                             default:
                                 break;
@@ -41,10 +41,10 @@ public class Rabbit extends Apple {
                     case 2:
                         switch (random.nextInt(3) + 1) {
                             case 1:
-                                if(++y == 60) y = 0;
+                                if(++y == 61) y = 0;
                                 break;
                             case 2:
-                                if(--y == -1) y = 59;
+                                if(--y == -1) y = 60;
                                 break;
                             default:
                                 break;
@@ -53,9 +53,9 @@ public class Rabbit extends Apple {
                     default:
                         break;
                 }
-            } while (matrix[x][y] == 1);
+            } while (matrix[y][x] == 1);
             go = 0;
         }
-        matrix[x][y] = 1;
+        matrix[y][x] = 1;
     }
 }
