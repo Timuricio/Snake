@@ -53,7 +53,7 @@ public class View
                 fieldMatrix.setMatrix(new int[61][61]);
                 score.setText(String.format("%s - %d","Score",snake.score));
                 timer.setText(String.format("%s - %d","Time",snake.time));
-                view.sleep(75);
+                view.sleep(100);
 
                 if (!snake.isAlive)
                     break;

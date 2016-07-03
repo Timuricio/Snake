@@ -17,11 +17,11 @@ public class Snake {
     private Direction direction;
 
     public Snake(int[][] matrix, int size) {
-        time = 7000;
+        time = 300;
         score = 0;
         direction = Direction.LEFT;
         this.size = size;
-        Ar = new int[100][2];
+        Ar = new int[102][2];
         apple = new Apple();
         gouon(matrix, headX, headY, size, Ar);
 
@@ -204,7 +204,6 @@ public class Snake {
 
 
             }
-            met(matrix);
 
 
         }
