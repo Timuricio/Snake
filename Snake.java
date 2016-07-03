@@ -17,7 +17,7 @@ public class Snake {
     private Direction direction;
 
     public Snake(int[][] matrix, int size) {
-        time = 30000;
+        time = 300;
         score = 0;
         direction = Direction.LEFT;
         this.size = size;
@@ -94,7 +94,7 @@ public class Snake {
 
     public boolean canGo(int y, int x) {
         for (int i = 1; i < size; i++) {
-            if ((x == Ar[i][0]) && (y == Ar[i][1]))
+            if ((Ar[0][0] + x == Ar[i][0]) && (Ar[0][1] + y == Ar[i][1]))
                 return false;
         }
         return true;
@@ -150,26 +150,26 @@ public class Snake {
             bodyM();
 
             if (30 > center(apple.x, headX)) {
-                if (canGo(headY, headX + 1)) {
+                if (canGo(0, 1)) {
                     RIGHT(matrix);
-                } else if (canGo(headY, headX - 1)) {
+                } else if (canGo(0, 1)) {
                     LEFT(matrix);
-                } else if (canGo(headY + 1, headX)) {
+                } else if (canGo(1, 0)) {
                     DOWN(matrix);
-                } else if (canGo(headY - 1, headX)) {
+                } else if (canGo(-1, 0)) {
                     UP(matrix);
                 } else RIGHT(matrix);
 
 
             } else if (30 < center(apple.x, headX)) {
 
-                if (canGo(headY, headX + 1)) {
+                if (canGo(0, -1)) {
                     LEFT(matrix);
-                } else if (canGo(headY, headX - 1)) {
+                } else if (canGo(0, 1)) {
                     RIGHT(matrix);
-                } else if (canGo(headY + 1, headX)) {
+                } else if (canGo(1, 0)) {
                     DOWN(matrix);
-                } else if (canGo(headY - 1, headX)) {
+                } else if (canGo(-1, 0)) {
                     UP(matrix);
                 } else RIGHT(matrix);
 
@@ -177,25 +177,25 @@ public class Snake {
 
                 if (30 > center(apple.y, headY)) {
 
-                    if (canGo(headY, headX + 1)) {
+                    if (canGo(1, 0)) {
                         DOWN(matrix);
-                    } else if (canGo(headY, headX - 1)) {
+                    } else if (canGo(-1, 0)) {
                         UP(matrix);
-                    } else if (canGo(headY + 1, headX)) {
+                    } else if (canGo(0, 1)) {
                         RIGHT(matrix);
-                    } else if (canGo(headY - 1, headX)) {
+                    } else if (canGo(0, -1)) {
                         LEFT(matrix);
                     } else RIGHT(matrix);
 
                 } else if (30 < center(apple.y, headY)) {
 
-                    if (canGo(headY, headX + 1)) {
+                    if (canGo(-1, 0)) {
                         UP(matrix);
-                    } else if (canGo(headY, headX - 1)) {
+                    } else if (canGo(1, 0)) {
                         DOWN(matrix);
-                    } else if (canGo(headY + 1, headX)) {
+                    } else if (canGo(0, 1)) {
                         RIGHT(matrix);
-                    } else if (canGo(headY - 1, headX)) {
+                    } else if (canGo(0, -1)) {
                         LEFT(matrix);
                     } else RIGHT(matrix);
                 } else {
