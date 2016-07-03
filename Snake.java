@@ -17,7 +17,7 @@ public class Snake {
     private Direction direction;
 
     public Snake(int[][] matrix, int size) {
-        time = 300;
+        time = 7000;
         score = 0;
         direction = Direction.LEFT;
         this.size = size;
