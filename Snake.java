@@ -1,10 +1,14 @@
+
+
 /**
  * Created by Timur on 01.07.2016.
  */
 public class Snake {
     private Apple apple;
     boolean isAlive = true;
+    boolean B = true;
     int[][] Ar;
+    int Ny = 60;
     int size;
     int headX = 30;
     int headY = 30;
@@ -17,11 +21,11 @@ public class Snake {
     private Direction direction;
 
     public Snake(int[][] matrix, int size) {
-        time = 300;
+        time = 300000;
         score = 0;
         direction = Direction.LEFT;
         this.size = size;
-        Ar = new int[102][2];
+        Ar = new int[1020][2];
         apple = new Apple();
         gouon(matrix, headX, headY, size, Ar);
 
@@ -59,9 +63,51 @@ public class Snake {
             bodyM();
             DOWN(matrix);
 
-        } else if (direction.equals(Direction.BOT)) BOT(matrix);
+        } else if (direction.equals(Direction.BOT)) {
+            BOT(matrix);
+        } else if (direction.equals(Direction.BACK)) {
+            back();
+            if (canGo(1, 0)) {
+                bodyM();
+                DOWN(matrix);
+                setDirection(Direction.DOWN);
+            } else if (canGo(-1, 0)) {
+                bodyM();
+                UP(matrix);
+                setDirection(Direction.UP);
+            } else if (canGo(0, 1)) {
+                bodyM();
+                RIGHT(matrix);
+                setDirection(Direction.RIGHT);
+            } else if (canGo(0, -1)) {
+                bodyM();
+                LEFT(matrix);
+                setDirection(Direction.LEFT);
+            } else {
+                System.out.println("ОШИИИИБИЗЩЕ!!!!");
+            }
+
+        }
 
         if (time <= 0) isAlive = false;
+    }
+
+
+    public void back() {
+        int y;
+        int x;
+
+        for (int j = 0, k = size - 1; k > j; k--, j++) {
+            x = Ar[j][0];
+            y = Ar[j][1];
+            Ar[j][0] = Ar[k][0];
+            Ar[j][1] = Ar[k][1];
+            Ar[k][0] = x;
+            Ar[k][1] = y;
+        }
+        headY = Ar[0][1];
+        headX = Ar[0][0];
+
     }
 
     public static void gouon(int[][] matrix, int headX, int headY, int size, int[][] Ar) {
@@ -84,6 +130,8 @@ public class Snake {
         }
     }
 
+
+
     public void bodyM() {
         for (int i = size - 1; i > 0; i--) {
             t = Ar[i - 1][0];
@@ -95,7 +143,7 @@ public class Snake {
 
     public boolean canGo(int y, int x) {
         for (int i = 1; i < size; i++) {
-            if ((Ar[0][0] + x == Ar[i][0]) && (Ar[0][1] + y == Ar[i][1]))
+            if ((headX + x == Ar[i][0]) && (headY + y == Ar[i][1]))
                 return false;
         }
         return true;
@@ -158,8 +206,7 @@ public class Snake {
                 } else {
                     MBSA(matrix);
                 }
-            }  else MBA(matrix, apple.y, apple.x);
-
+            } else MBA(matrix, apple.y, apple.x);
 
 
         }
@@ -269,12 +316,25 @@ public class Snake {
     }
 
     public void BOT3(int[][] matrix) {
-        if ((headX < 60) || ((Ar[2][1]) != headY)) {
-            bodyM();
-            RIGHT(matrix);
+
+        if (B) {
+
+            if ((headX != Ny)) {
+                bodyM();
+                RIGHT(matrix);
+                return;
+            } else {
+                B = false;
+                bodyM();
+                UP(matrix);
+                if (--Ny == -1) Ny = 60;
+            }
+
         } else {
             bodyM();
-            UP(matrix);
+            RIGHT(matrix);
+            B = true;
+            return;
         }
     }
 
@@ -282,23 +342,33 @@ public class Snake {
         if (30 > center(x, headX)) {
             if (canGo(0, 1)) {
                 RIGHT(matrix);
-            } else if(headY < Ar[size - 1][1]) {
+            } else if (headY < Ar[size - 1][1]) {
 
-                if(canGo(1, 0)) {
+                if (canGo(1, 0)) {
                     DOWN(matrix);
                 } else if (canGo(-1, 0)) {
                     UP(matrix);
                 } else if (canGo(0, -1)) {
                     LEFT(matrix);
-                } else RIGHT(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else {
+                    System.out.println("ВЫЛЕТ!!");
+                    RIGHT(matrix);
+                }
             } else {
-                if(canGo(1, 0)) {
+                if (canGo(1, 0)) {
                     DOWN(matrix);
                 } else if (canGo(-1, 0)) {
                     UP(matrix);
                 } else if (canGo(0, -1)) {
                     LEFT(matrix);
-                } else RIGHT(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else {
+                    System.out.println("ВЫЛЕТ!!");
+                    RIGHT(matrix);
+                }
             }
 
 
@@ -306,23 +376,33 @@ public class Snake {
 
             if (canGo(0, -1)) {
                 LEFT(matrix);
-            } else if(headY < Ar[size - 1][1]) {
+            } else if (headY < Ar[size - 1][1]) {
 
-                if(canGo(-1, 0)) {
-                    DOWN(matrix);
-                } else if (canGo(1, 0)) {
-                    UP(matrix);
-                } else if (canGo(0, 1)) {
-                    RIGHT(matrix);
-                } else LEFT(matrix);
-            } else {
-                if(canGo(1, 0)) {
+                if (canGo(1, 0)) {
                     DOWN(matrix);
                 } else if (canGo(-1, 0)) {
                     UP(matrix);
                 } else if (canGo(0, 1)) {
                     RIGHT(matrix);
-                } else LEFT(matrix);
+                } else if (canGo(0, -1)) {
+                    LEFT(matrix);
+                } else {
+                    System.out.println("ВЫЛЕТ!!");
+                    LEFT(matrix);
+                }
+            } else {
+                if (canGo(1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(-1, 0)) {
+                    UP(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else if (canGo(0, -1)) {
+                    LEFT(matrix);
+                } else {
+                    System.out.println("ВЫЛЕТ!!");
+                    LEFT(matrix);
+                }
             }
 
         } else {
@@ -331,23 +411,33 @@ public class Snake {
 
                 if (canGo(1, 0)) {
                     DOWN(matrix);
-                } else if(headX > Ar[size - 1][0]) {
+                } else if (headX > Ar[size - 1][0]) {
 
-                    if(canGo(0, -1)) {
+                    if (canGo(0, -1)) {
                         LEFT(matrix);
                     } else if (canGo(0, 1)) {
                         RIGHT(matrix);
                     } else if (canGo(-1, 0)) {
                         UP(matrix);
-                    } else DOWN(matrix);
+                    } else if (canGo(1, 0)) {
+                        DOWN(matrix);
+                    } else {
+                        System.out.println("ВЫЛЕТ!!");
+                        DOWN(matrix);
+                    }
                 } else {
-                    if(canGo(0, 1)) {
+                    if (canGo(0, 1)) {
                         RIGHT(matrix);
                     } else if (canGo(0, -1)) {
                         LEFT(matrix);
                     } else if (canGo(-1, 0)) {
                         UP(matrix);
-                    } else DOWN(matrix);
+                    } else if (canGo(1, 0)) {
+                        DOWN(matrix);
+                    } else {
+                        System.out.println("ВЫЛЕТ!!");
+                        DOWN(matrix);
+                    }
                 }
 
 
@@ -355,23 +445,33 @@ public class Snake {
 
                 if (canGo(-1, 0)) {
                     UP(matrix);
-                } else if(headX > Ar[size - 1][0]) {
+                } else if (headX > Ar[size - 1][0]) {
 
-                    if(canGo(0, -1)) {
+                    if (canGo(0, -1)) {
                         LEFT(matrix);
                     } else if (canGo(0, 1)) {
                         RIGHT(matrix);
                     } else if (canGo(1, 0)) {
                         DOWN(matrix);
-                    } else UP(matrix);
+                    } else if (canGo(-1, 0)) {
+                        UP(matrix);
+                    } else {
+                        System.out.println("ВЫЛЕТ!!");
+                        UP(matrix);
+                    }
                 } else {
-                    if(canGo(0, 1)) {
+                    if (canGo(0, 1)) {
                         RIGHT(matrix);
                     } else if (canGo(0, -1)) {
                         LEFT(matrix);
                     } else if (canGo(1, 0)) {
                         DOWN(matrix);
-                    } else UP(matrix);
+                    } else if (canGo(-1, 0)) {
+                        UP(matrix);
+                    } else {
+                        System.out.println("ВЫЛЕТ!!");
+                        UP(matrix);
+                    }
                 }
             } else {
                 System.out.println("Ошибка!!!!");

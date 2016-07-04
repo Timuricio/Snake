@@ -175,7 +175,11 @@ public class View
                     //Если "стрелка вниз" - сдвинуть фигурку вниз
                 else if (e.getKeyCode() == KeyEvent.VK_DOWN && snake.Ar[0][1] - snake.Ar[1][1] != -1&& snake.Ar[0][1] - snake.Ar[1][1] != 60)
                     snake.setDirection(Direction.DOWN);
-                else if (e.getKeyChar() == 'q') snake.setDirection(Direction.BOT);
+                else if (e.getKeyChar() == 'q') {
+                    snake.setDirection(Direction.BOT);
+                } else if(e.getKeyChar() == 's') {
+                    snake.setDirection(Direction.BACK);
+                }
             }
 
             @Override
