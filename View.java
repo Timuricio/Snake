@@ -164,16 +164,16 @@ public class View
             @Override
             public void keyPressed(KeyEvent e)
             {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT && snake.Ar[0][0] - snake.Ar[1][0] != 1)
+                if (e.getKeyCode() == KeyEvent.VK_LEFT && snake.Ar[0][0] - snake.Ar[1][0] != 1 && snake.Ar[0][0] - snake.Ar[1][0] != -60)
                     snake.setDirection(Direction.LEFT);
                     //Если "стрелка вправо" - сдвинуть фигурку вправо
-                else if (e.getKeyCode() == KeyEvent.VK_RIGHT && snake.Ar[0][0] - snake.Ar[1][0] != -1)
+                else if (e.getKeyCode() == KeyEvent.VK_RIGHT && snake.Ar[0][0] - snake.Ar[1][0] != -1&& snake.Ar[0][0] - snake.Ar[1][0] != 60)
                     snake.setDirection(Direction.RIGHT);
                     //Если "стрелка вверх" - сдвинуть фигурку вверх
-                else if (e.getKeyCode() == KeyEvent.VK_UP && snake.Ar[0][1] - snake.Ar[1][1] != 1)
+                else if (e.getKeyCode() == KeyEvent.VK_UP && snake.Ar[0][1] - snake.Ar[1][1] != 1&& snake.Ar[0][1] - snake.Ar[1][1] != -60)
                     snake.setDirection(Direction.UP);
                     //Если "стрелка вниз" - сдвинуть фигурку вниз
-                else if (e.getKeyCode() == KeyEvent.VK_DOWN && snake.Ar[0][1] - snake.Ar[1][1] != -1)
+                else if (e.getKeyCode() == KeyEvent.VK_DOWN && snake.Ar[0][1] - snake.Ar[1][1] != -1&& snake.Ar[0][1] - snake.Ar[1][1] != 60)
                     snake.setDirection(Direction.DOWN);
                 else if (e.getKeyChar() == 'q') snake.setDirection(Direction.BOT);
             }
