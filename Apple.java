@@ -25,7 +25,6 @@ public class Apple {
             x = random.nextInt(60);
             y = random.nextInt(60);
         }
-        count++;
 
     }
 
