@@ -282,26 +282,48 @@ public class Snake {
         if (30 > center(x, headX)) {
             if (canGo(0, 1)) {
                 RIGHT(matrix);
-            } else if (canGo(0, -1)) {
-                LEFT(matrix);
-            } else if (canGo(1, 0)) {
-                DOWN(matrix);
-            } else if (canGo(-1, 0)) {
-                UP(matrix);
-            } else RIGHT(matrix);
+            } else if(headY < Ar[size - 1][1]) {
+
+                if(canGo(1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(-1, 0)) {
+                    UP(matrix);
+                } else if (canGo(0, -1)) {
+                    LEFT(matrix);
+                } else RIGHT(matrix);
+            } else {
+                if(canGo(1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(-1, 0)) {
+                    UP(matrix);
+                } else if (canGo(0, -1)) {
+                    LEFT(matrix);
+                } else RIGHT(matrix);
+            }
 
 
         } else if (30 < center(x, headX)) {
 
             if (canGo(0, -1)) {
                 LEFT(matrix);
-            } else if (canGo(0, 1)) {
-                RIGHT(matrix);
-            } else if (canGo(1, 0)) {
-                DOWN(matrix);
-            } else if (canGo(-1, 0)) {
-                UP(matrix);
-            } else RIGHT(matrix);
+            } else if(headY < Ar[size - 1][1]) {
+
+                if(canGo(-1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(1, 0)) {
+                    UP(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else LEFT(matrix);
+            } else {
+                if(canGo(1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(-1, 0)) {
+                    UP(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else LEFT(matrix);
+            }
 
         } else {
 
@@ -309,25 +331,48 @@ public class Snake {
 
                 if (canGo(1, 0)) {
                     DOWN(matrix);
-                } else if (canGo(-1, 0)) {
-                    UP(matrix);
-                } else if (canGo(0, 1)) {
-                    RIGHT(matrix);
-                } else if (canGo(0, -1)) {
-                    LEFT(matrix);
-                } else RIGHT(matrix);
+                } else if(headX > Ar[size - 1][0]) {
+
+                    if(canGo(0, -1)) {
+                        LEFT(matrix);
+                    } else if (canGo(0, 1)) {
+                        RIGHT(matrix);
+                    } else if (canGo(-1, 0)) {
+                        UP(matrix);
+                    } else DOWN(matrix);
+                } else {
+                    if(canGo(0, 1)) {
+                        RIGHT(matrix);
+                    } else if (canGo(0, -1)) {
+                        LEFT(matrix);
+                    } else if (canGo(-1, 0)) {
+                        UP(matrix);
+                    } else DOWN(matrix);
+                }
+
 
             } else if (30 < center(y, headY)) {
 
                 if (canGo(-1, 0)) {
                     UP(matrix);
-                } else if (canGo(1, 0)) {
-                    DOWN(matrix);
-                } else if (canGo(0, 1)) {
-                    RIGHT(matrix);
-                } else if (canGo(0, -1)) {
-                    LEFT(matrix);
-                } else RIGHT(matrix);
+                } else if(headX > Ar[size - 1][0]) {
+
+                    if(canGo(0, -1)) {
+                        LEFT(matrix);
+                    } else if (canGo(0, 1)) {
+                        RIGHT(matrix);
+                    } else if (canGo(1, 0)) {
+                        DOWN(matrix);
+                    } else UP(matrix);
+                } else {
+                    if(canGo(0, 1)) {
+                        RIGHT(matrix);
+                    } else if (canGo(0, -1)) {
+                        LEFT(matrix);
+                    } else if (canGo(1, 0)) {
+                        DOWN(matrix);
+                    } else UP(matrix);
+                }
             } else {
                 System.out.println("Ошибка!!!!");
                 met(matrix);
