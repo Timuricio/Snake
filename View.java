@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class View
 {
-    private final static String FILE = "score.txt";
+    private final static String FILE = "src/score.txt";
     private static FieldMatrix fieldMatrix = new FieldMatrix(61, 61);
     private static Snake snake;
     private static boolean replay = false;
@@ -128,7 +128,7 @@ public class View
 
     private void init(JFrame frame, JLabel score, JLabel timer,JLabel playserSnake)
     {
-        frame.setPreferredSize(new Dimension(750, 630));
+        frame.setPreferredSize(new Dimension(760, 640));
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
