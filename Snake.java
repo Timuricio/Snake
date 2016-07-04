@@ -130,7 +130,7 @@ public class Snake {
     public void eatRApple() {
         if (apple.R == true) {
             if ((Ar[0][0] == apple.R1.x) && (Ar[0][1] == apple.R1.y)) {
-                score += apple.R1.point;
+                score += apple.R1.Rpoint;
                 time += 150;
                 size++;
                 apple.R = false;
@@ -149,65 +149,14 @@ public class Snake {
         {
             bodyM();
 
-            if (30 > center(apple.x, headX)) {
-                if (canGo(0, 1)) {
-                    RIGHT(matrix);
-                } else if (canGo(0, -1)) {
-                    LEFT(matrix);
-                } else if (canGo(1, 0)) {
-                    DOWN(matrix);
-                } else if (canGo(-1, 0)) {
-                    UP(matrix);
-                } else RIGHT(matrix);
-
-
-            } else if (30 < center(apple.x, headX)) {
-
-                if (canGo(0, -1)) {
-                    LEFT(matrix);
-                } else if (canGo(0, 1)) {
-                    RIGHT(matrix);
-                } else if (canGo(1, 0)) {
-                    DOWN(matrix);
-                } else if (canGo(-1, 0)) {
-                    UP(matrix);
-                } else RIGHT(matrix);
-
-            } else {
-
-                if (30 > center(apple.y, headY)) {
-
-                    if (canGo(1, 0)) {
-                        DOWN(matrix);
-                    } else if (canGo(-1, 0)) {
-                        UP(matrix);
-                    } else if (canGo(0, 1)) {
-                        RIGHT(matrix);
-                    } else if (canGo(0, -1)) {
-                        LEFT(matrix);
-                    } else RIGHT(matrix);
-
-                } else if (30 < center(apple.y, headY)) {
-
-                    if (canGo(-1, 0)) {
-                        UP(matrix);
-                    } else if (canGo(1, 0)) {
-                        DOWN(matrix);
-                    } else if (canGo(0, 1)) {
-                        RIGHT(matrix);
-                    } else if (canGo(0, -1)) {
-                        LEFT(matrix);
-                    } else RIGHT(matrix);
-                } else {
-                    System.out.println("Ошибка!!!!");
-                }
+            MBA(matrix);
 
 
             }
 
 
         }
-    }
+
 
     public void UP(int[][] matrix) {
 
@@ -316,6 +265,63 @@ public class Snake {
         } else {
             bodyM();
             UP(matrix);
+        }
+    }
+
+    public void MBA(int[][] matrix) {
+        if (30 > center(apple.x, headX)) {
+            if (canGo(0, 1)) {
+                RIGHT(matrix);
+            } else if (canGo(0, -1)) {
+                LEFT(matrix);
+            } else if (canGo(1, 0)) {
+                DOWN(matrix);
+            } else if (canGo(-1, 0)) {
+                UP(matrix);
+            } else RIGHT(matrix);
+
+
+        } else if (30 < center(apple.x, headX)) {
+
+            if (canGo(0, -1)) {
+                LEFT(matrix);
+            } else if (canGo(0, 1)) {
+                RIGHT(matrix);
+            } else if (canGo(1, 0)) {
+                DOWN(matrix);
+            } else if (canGo(-1, 0)) {
+                UP(matrix);
+            } else RIGHT(matrix);
+
+        } else {
+
+            if (30 > center(apple.y, headY)) {
+
+                if (canGo(1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(-1, 0)) {
+                    UP(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else if (canGo(0, -1)) {
+                    LEFT(matrix);
+                } else RIGHT(matrix);
+
+            } else if (30 < center(apple.y, headY)) {
+
+                if (canGo(-1, 0)) {
+                    UP(matrix);
+                } else if (canGo(1, 0)) {
+                    DOWN(matrix);
+                } else if (canGo(0, 1)) {
+                    RIGHT(matrix);
+                } else if (canGo(0, -1)) {
+                    LEFT(matrix);
+                } else RIGHT(matrix);
+            } else {
+                System.out.println("Ошибка!!!!");
+                met(matrix);
+            }
         }
     }
 
