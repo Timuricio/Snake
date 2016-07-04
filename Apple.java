@@ -5,7 +5,7 @@ import java.util.Random;
  */
 public class Apple {
     public static int maxAppleCount = 3;
-    public static int rabbitCounter = 11;
+    public static int rabbitCounter = 20;
     public static final int point = 200;
     public int x, y;
     public boolean S = false;
@@ -18,25 +18,21 @@ public class Apple {
 
     public Apple() {
 
-        x = random.nextInt(59);
-        y = random.nextInt(59);
 
-        while (x != 30 && x != 31 && x != 32 && y != 30) {
-            x = random.nextInt(59);
-            y = random.nextInt(59);
-        }
-        count++;
+
+         do {
+            x = random.nextInt(60);
+            y = random.nextInt(60);
+        } while (x != 30 && x != 31 && x != 32 && y != 30);
 
     }
 
     public void generateApple(int[][] matrix) {
-        x = random.nextInt(59);
-        y = random.nextInt(59);
 
-        while (matrix[x][y] == 1) {
-            x = random.nextInt(59);
-            y = random.nextInt(59);
-        }
+         do {
+            x = random.nextInt(60);
+            y = random.nextInt(60);
+        } while (matrix[y][x] == 1);
         if (++count == maxAppleCount) {
             S = true;
             count = 0;
@@ -51,7 +47,7 @@ public class Apple {
     }
 
     public void paintApple(int[][] matrix) {
-        matrix[x][y] = 1;
+        matrix[y][x] = 1;
         if(S) {
             if(S2.point > 200) {
                 S2.point -= 10;

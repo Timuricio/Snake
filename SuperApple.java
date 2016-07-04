@@ -8,16 +8,16 @@ public class SuperApple extends Apple {
     public int x2, y2, x3, y3;
 
     public SuperApple(int[][] matrix) {
-        x = super.random.nextInt(59);
-        y = super.random.nextInt(59);
+        x = super.random.nextInt(60);
+        y = super.random.nextInt(60);
         x2 = x + 1;
         y2 = y;
         x3 = x;
         y3 = y + 1;
 
-        while ( ( matrix[x][y] == 1 ) || (matrix[x2][y2] == 1) || ( matrix[x3][y3] == 1 ) || (x == 59) || (y == 59)) {
-            x = random.nextInt(59);
-            y = random.nextInt(59);
+        while ( ( matrix[y][x] == 1 ) || (matrix[y2][x2] == 1) || ( matrix[y3][x3] == 1 ) || (y == 60) || (x == 60)) {
+            x = random.nextInt(60);
+            y = random.nextInt(60);
         }
         paintApple(matrix);
     }
@@ -26,9 +26,9 @@ public class SuperApple extends Apple {
     public void paintApple(int[][] matrix) {
 
         {
-            matrix[x][y] = 1;
-            matrix[x2][y2] = 1;
-            matrix[x3][y3] = 1;
+            matrix[y][x] = 1;
+            matrix[y2][x2] = 1;
+            matrix[y3][x3] = 1;
         }
     }
 }
