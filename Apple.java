@@ -18,24 +18,21 @@ public class Apple {
 
     public Apple() {
 
-        x = random.nextInt(60);
-        y = random.nextInt(60);
 
-        while (x != 30 && x != 31 && x != 32 && y != 30) {
+
+         do {
             x = random.nextInt(60);
             y = random.nextInt(60);
-        }
+        } while (x != 30 && x != 31 && x != 32 && y != 30);
 
     }
 
     public void generateApple(int[][] matrix) {
-        x = random.nextInt(60);
-        y = random.nextInt(60);
 
-        while (matrix[y][x] == 1) {
+         do {
             x = random.nextInt(60);
             y = random.nextInt(60);
-        }
+        } while (matrix[y][x] == 1);
         if (++count == maxAppleCount) {
             S = true;
             count = 0;

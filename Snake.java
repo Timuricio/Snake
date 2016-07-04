@@ -250,7 +250,6 @@ public class Snake {
         }
 
         t = headX;
-
         Ar[0][0] = t;
 
 

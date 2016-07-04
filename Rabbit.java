@@ -2,7 +2,7 @@
  * Created by Иван on 02.07.2016.
  */
 public class Rabbit extends Apple {
-    public static final int Rpoint = 2000;
+    public static final int Rpoint = 4000;
     public int go = 0;
 
     Rabbit(int[][] matrix) {
