@@ -152,7 +152,7 @@ public class Snake {
             if (30 > center(apple.x, headX)) {
                 if (canGo(0, 1)) {
                     RIGHT(matrix);
-                } else if (canGo(0, 1)) {
+                } else if (canGo(0, -1)) {
                     LEFT(matrix);
                 } else if (canGo(1, 0)) {
                     DOWN(matrix);
@@ -308,6 +308,16 @@ public class Snake {
         System.out.println(headX + "\t" + headY + "\n");
         System.out.println(apple.x + "\t" + apple.y);
 
+    }
+
+    public void BOT3(int[][] matrix) {
+        if( ( headX < 60 ) || ( ( Ar[2][1] ) != headY ) ){
+            bodyM();
+            RIGHT(matrix);
+        } else {
+            bodyM();
+            UP(matrix);
+        }
     }
 
 
