@@ -72,7 +72,8 @@ public class Snake {
         }
     }
 
-    public int center(int K, int KK) {
+    public int center(int K, int KK) { // первый параметр занимает центр и относительно этого расчитывается разница между
+        // первым и вторым параметром
 
         if (KK + (30 - K) > 60) {
             return (KK + (30 - K)) - 60;
@@ -148,14 +149,23 @@ public class Snake {
     public void BOT(int[][] matrix) {
         {
             bodyM();
+            if (apple.S) {
 
-            MBA(matrix);
+                if ((distance(apple.y, apple.x, headY, headX)) <= (distance(apple.S2.y, apple.S2.x, headY, headX)) &&
+                        (distance(apple.y, apple.x, headY, headX)) <= (distance(apple.S2.y2, apple.S2.x2, headY, headX)) &&
+                        (distance(apple.y, apple.x, headY, headX)) <= (distance(apple.S2.y3, apple.S2.x3, headY, headX))) {
+                    MBA(matrix, apple.y, apple.x);
+                } else {
+                    MBSA(matrix);
+                }
+            }  else MBA(matrix, apple.y, apple.x);
 
-
-            }
 
 
         }
+
+
+    }
 
 
     public void UP(int[][] matrix) {
@@ -259,7 +269,7 @@ public class Snake {
     }
 
     public void BOT3(int[][] matrix) {
-        if( ( headX < 60 ) || ( ( Ar[2][1] ) != headY ) ){
+        if ((headX < 60) || ((Ar[2][1]) != headY)) {
             bodyM();
             RIGHT(matrix);
         } else {
@@ -268,8 +278,8 @@ public class Snake {
         }
     }
 
-    public void MBA(int[][] matrix) {
-        if (30 > center(apple.x, headX)) {
+    public void MBA(int[][] matrix, int y, int x) {
+        if (30 > center(x, headX)) {
             if (canGo(0, 1)) {
                 RIGHT(matrix);
             } else if (canGo(0, -1)) {
@@ -281,7 +291,7 @@ public class Snake {
             } else RIGHT(matrix);
 
 
-        } else if (30 < center(apple.x, headX)) {
+        } else if (30 < center(x, headX)) {
 
             if (canGo(0, -1)) {
                 LEFT(matrix);
@@ -295,7 +305,7 @@ public class Snake {
 
         } else {
 
-            if (30 > center(apple.y, headY)) {
+            if (30 > center(y, headY)) {
 
                 if (canGo(1, 0)) {
                     DOWN(matrix);
@@ -307,7 +317,7 @@ public class Snake {
                     LEFT(matrix);
                 } else RIGHT(matrix);
 
-            } else if (30 < center(apple.y, headY)) {
+            } else if (30 < center(y, headY)) {
 
                 if (canGo(-1, 0)) {
                     UP(matrix);
@@ -323,6 +333,29 @@ public class Snake {
                 met(matrix);
             }
         }
+    }
+
+    public void MBSA(int[][] matrix) {
+        if ((distance(apple.S2.y, apple.S2.x, headY, headX)) <= (distance(apple.S2.y2, apple.S2.x2, headY, headX)) &&
+                (distance(apple.S2.y, apple.S2.x, headY, headX)) <= (distance(apple.S2.y3, apple.S2.x3, headY, headX))) {
+            MBA(matrix, apple.S2.y, apple.S2.x);
+        } else if ((distance(apple.S2.y2, apple.S2.x2, headY, headX)) <= (distance(apple.S2.y, apple.S2.x, headY, headX)) &&
+                (distance(apple.S2.y2, apple.S2.x2, headY, headX)) <= (distance(apple.S2.y3, apple.S2.x3, headY, headX))) {
+            MBA(matrix, apple.S2.y2, apple.S2.x2);
+        } else if ((distance(apple.S2.y3, apple.S2.x3, headY, headX)) <= (distance(apple.S2.y, apple.S2.x, headY, headX)) &&
+                (distance(apple.S2.y3, apple.S2.x3, headY, headX)) <= (distance(apple.S2.y2, apple.S2.x2, headY, headX))) {
+            MBA(matrix, apple.S2.y3, apple.S2.x3);
+        }
+    }
+
+    public int distance(int y, int x, int y2, int x2) {
+        int d;
+        int h;
+        d = 30 - center(y, y2);
+        if (d < 0) d = -d;
+        h = 30 - center(x, x2);
+        if (h < 0) h = -h;
+        return d + h;
     }
 
 
